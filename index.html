@@ -600,73 +600,217 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
   font-weight: 500;
 }
 
-/* ── 路线页 ───────────────────────────────── */
-.reveal .route-grid {
+/* ── 源流页：时间 / 风格 / 最著名 ───────────── */
+.reveal .hist-thesis {
+  margin: 9px 0 0;
+  color: var(--ink-2);
+  font-size: 0.66em;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.reveal .history {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  gap: 18px;
+  margin-top: 14px;
+  padding-bottom: 34px; /* base.css 的页脚是绝对定位，留出底部 */
+}
+
+.reveal .timeline-block {
+  flex: 0 0 auto;
+  min-height: 0;
+}
+.reveal .timeline-block .panel-head {
+  margin-bottom: 8px;
+}
+
+.reveal .hist-bottom {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gap);
+  grid-template-columns: 1.12fr 1fr;
+  gap: 18px;
   flex: 1 1 0;
   min-height: 0;
 }
-.reveal .route-card {
+
+.reveal .hist-panel {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px 14px 15px;
-  background: var(--paper);
-  border: 1.5px solid var(--line-strong);
-  border-radius: var(--radius);
+  min-width: 0;
   min-height: 0;
-  overflow: hidden;
 }
-.reveal .route-card .no {
+
+.reveal .panel-head {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.56em;
+  letter-spacing: 0.16em;
+}
+.reveal .panel-head small {
+  margin-left: 8px;
+  color: var(--ink-3);
+  font-family: var(--font-body);
+  font-size: 0.86em;
+  letter-spacing: 0.04em;
+}
+
+/* 时间轴：复用 base.css 的 .timeline */
+.reveal .history .timeline .step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 12px 11px;
+}
+.reveal .history .timeline .year {
   margin: 0;
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 0.58em;
-  letter-spacing: 0.24em;
-}
-.reveal .route-card .work {
-  margin: 0;
-  font-size: 0.92em;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  line-height: 1.3;
-}
-.reveal .route-card .work small {
-  display: block;
-  margin-top: 4px;
-  color: var(--ink-3);
-  font-family: var(--font-mono);
-  font-size: 0.54em;
-  font-weight: 400;
+  font-size: 0.7em;
   letter-spacing: 0.1em;
 }
-.reveal .route-card ul {
-  margin: 2px 0 0;
-  padding: 0;
-  list-style: none;
+.reveal .history .timeline .what {
+  margin: 3px 0 0;
+  color: var(--ink);
+  font-size: 0.96em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
-.reveal .route-card li {
-  margin: 0 0 6px;
-  padding-left: 12px;
-  position: relative;
+.reveal .history .timeline .note {
+  margin: 5px 0 0;
   color: var(--ink-2);
-  font-size: 0.62em;
+  font-size: 0.64em;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+
+/* 风格表 */
+.reveal .style-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 0;
+  min-height: 0;
+}
+.reveal .style-row {
+  display: grid;
+  grid-template-columns: 26px 1.15fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  flex: 1 1 0;
+  min-height: 0;
+  padding: 8px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.reveal .style-row .no {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.54em;
+  letter-spacing: 0.1em;
+}
+.reveal .style-row .name { margin: 0; }
+.reveal .style-row .name b {
+  display: block;
+  color: var(--ink);
+  font-size: 0.86em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+.reveal .style-row .name small {
+  display: block;
+  margin-top: 2px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.5em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.reveal .style-row .note {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.6em;
   line-height: 1.4;
 }
-.reveal .route-card li::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 0.52em;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
+.reveal .style-row .eg {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.56em;
+  line-height: 1.4;
+  text-align: right;
 }
-.reveal .route-card li b {
+
+/* 最著名四部 */
+.reveal .four-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 0;
+  min-height: 0;
+}
+.reveal .four-row {
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  flex: 1 1 0;
+  min-height: 0;
+  padding: 8px 14px;
+  background: var(--paper);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+.reveal .four-row .year {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 1.35em;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.reveal .four-row .name { margin: 0; }
+.reveal .four-row .name b {
+  display: block;
   color: var(--ink);
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: 0.94em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+.reveal .four-row .name small {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.52em;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
+.reveal .four-row .city {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.56em;
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+.reveal .hist-note {
+  margin: 8px 0 0;
+  color: var(--ink-3);
+  font-size: 0.54em;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+.reveal .hist-bridge {
+  margin-top: 3px;
+  color: var(--ink-2);
 }
 
 /* ── 收尾页 ───────────────────────────────── */
@@ -718,41 +862,117 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
         </div>
       </section>
 
-      <!-- ═══ 02 · 路线 ═══════════════════════════════════ -->
+      <!-- ═══ 02 · 源流 ═══════════════════════════════════ -->
       <section class="pg">
         <div class="slide-header">
-          <p class="section-name">路线</p>
+          <p class="section-name">源流</p>
           <p>音乐剧赏析 &middot; 滕静</p>
         </div>
-        <h2 class="slide-title">三部剧，六个手法</h2>
-        <div class="content route-grid">
-          <div class="route-card">
-            <p class="no">01</p>
-            <p class="work">巴黎圣母院<small>NOTRE-DAME DE PARIS</small></p>
-            <ul>
-              <li><b>返始</b><br>Reprise</li>
-            </ul>
+        <h2 class="slide-title">音乐剧的一百五十年</h2>
+        <p class="hist-thesis">从轻歌剧、歌舞秀，到巨型音乐剧与当代舞台。<br>一条主线：歌、舞、戏，怎么合，怎么分。</p>
+        <div class="content history">
+          <div class="timeline-block">
+            <p class="panel-head">时间</p>
+            <div class="timeline">
+                <div class="step">
+                  <p class="year">1866</p>
+                  <p class="what">《黑钩子》</p>
+                  <p class="note">歌舞与情节同台，雏形</p>
+                </div>
+                <div class="step">
+                  <p class="year">1927</p>
+                  <p class="what">《演艺船》</p>
+                  <p class="note">歌开始为人物服务，整合起步</p>
+                </div>
+                <div class="step">
+                  <p class="year">1943</p>
+                  <p class="what">《俄克拉荷马！》</p>
+                  <p class="note">歌、舞、戏融为一体，黄金时代</p>
+                </div>
+                <div class="step">
+                  <p class="year">1960s</p>
+                  <p class="what">概念 / 摇滚</p>
+                  <p class="note">故事被拆开，摇滚上台</p>
+                </div>
+                <div class="step">
+                  <p class="year">1980s</p>
+                  <p class="what">巨型音乐剧</p>
+                  <p class="note">奇观与全球复制</p>
+                </div>
+                <div class="step">
+                  <p class="year">2015</p>
+                  <p class="what">《汉密尔顿》</p>
+                  <p class="note">嘻哈与多元选角，当代</p>
+                </div>
+            </div>
           </div>
-          <div class="route-card">
-            <p class="no">02</p>
-            <p class="work">悲惨世界<small>LES MIS&Eacute;RABLES</small></p>
-            <ul>
-              <li><b>对位</b><br>Counterpoint</li>
-              <li><b>垫声</b><br>Backing vocal</li>
-              <li><b>卡农</b><br>Canon</li>
-              <li><b>主导动机</b><br>Leitmotif</li>
-            </ul>
+          <div class="hist-bottom">
+            <div class="hist-panel">
+              <p class="panel-head">风格<small>常讲五种</small></p>
+              <div class="style-list">
+                <div class="style-row">
+                  <p class="no">01</p>
+                  <p class="name"><b>剧本音乐剧</b><small>Book musical</small></p>
+                  <p class="note">歌为剧情服务</p>
+                  <p class="eg">《俄克拉荷马！》</p>
+                </div>
+                <div class="style-row">
+                  <p class="no">02</p>
+                  <p class="name"><b>概念音乐剧</b><small>Concept musical</small></p>
+                  <p class="note">主题先行，结构自由</p>
+                  <p class="eg">《猫》</p>
+                </div>
+                <div class="style-row">
+                  <p class="no">03</p>
+                  <p class="name"><b>摇滚音乐剧</b><small>Rock musical</small></p>
+                  <p class="note">摇滚成为叙事语言</p>
+                  <p class="eg">《毛发》</p>
+                </div>
+                <div class="style-row">
+                  <p class="no">04</p>
+                  <p class="name"><b>点唱机音乐剧</b><small>Jukebox musical</small></p>
+                  <p class="note">旧歌串成新故事</p>
+                  <p class="eg">《妈妈咪呀！》</p>
+                </div>
+                <div class="style-row">
+                  <p class="no">05</p>
+                  <p class="name"><b>通唱音乐剧</b><small>Sung-through</small></p>
+                  <p class="note">全剧几乎无对白</p>
+                  <p class="eg">《悲惨世界》</p>
+                </div>
+              </div>
+            </div>
+            <div class="hist-panel">
+              <p class="panel-head">最著名<small>四部</small></p>
+              <div class="four-list">
+                <div class="four-row">
+                  <p class="year">1985</p>
+                  <p class="name"><b>《悲惨世界》</b><small>Les Mis&eacute;rables</small></p>
+                  <p class="city">伦敦</p>
+                </div>
+                <div class="four-row">
+                  <p class="year">1986</p>
+                  <p class="name"><b>《歌剧魅影》</b><small>The Phantom of the Opera</small></p>
+                  <p class="city">伦敦</p>
+                </div>
+                <div class="four-row">
+                  <p class="year">1998</p>
+                  <p class="name"><b>《巴黎圣母院》</b><small>Notre-Dame de Paris</small></p>
+                  <p class="city">巴黎</p>
+                </div>
+                <div class="four-row">
+                  <p class="year">2001</p>
+                  <p class="name"><b>《罗密欧与朱丽叶》</b><small>Rom&eacute;o et Juliette</small></p>
+                  <p class="city">巴黎</p>
+                </div>
+              </div>
+              <p class="hist-note">前两部是伦敦西区的巨型音乐剧，后两部是法语音乐剧的代表；不是唯一排名。</p>
+              <p class="hist-note hist-bridge">本讲的三部戏都在其中；第四部《罗密欧与朱丽叶》留作课后。</p>
+            </div>
           </div>
-          <div class="route-card">
-            <p class="no">03</p>
-            <p class="work">歌剧魅影<small>THE PHANTOM OF THE OPERA</small></p>
-            <ul>
-              <li><b>音乐引用</b><br>Musical quotation</li>
-            </ul>
-          </div>
-          </div>
+        </div>
         <div class="slide-footer">
-          <p class="source-note">Source &middot; 巴黎圣母院 / 悲惨世界 / 歌剧魅影</p>
+          <p class="source-note">Source &middot; Musical Theatre History &middot; 1866&ndash;2015</p>
           <p class="page-number">02</p>
         </div>
       </section>
